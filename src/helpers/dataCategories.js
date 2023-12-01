@@ -1,0 +1,22 @@
+export const dataCategories=[
+    {
+        id:1,
+        name:"Arreglos",
+        link:"assets/Arreglos.png"
+    },
+    {
+        id:2,
+        name:"Desayunos",
+        link:"assets/desayunos.jpg"
+    },
+    {
+        id:3,
+        name:"Pasteles",
+        link:"assets/pasteles.jpg"
+    },
+    {
+        id:4,
+        name:"Postres",
+        link:"assets/postre.jpg"
+    }
+]

@@ -1,0 +1,20 @@
+export const dataSocialNetwork=[
+    {
+        id:1,
+        name:"Instagram",
+        icon:"instagram",
+        link:"https://www.instagram.com/accounts/login/"
+    },
+    {
+        id:2,
+        name:"Linkedin",
+        icon:"linkedin",
+        link:"https://www.instagram.com/accounts/login/"
+    },
+    {
+        id:3,
+        name:"TikTok",
+        icon:"tiktok",
+        link:"https://www.instagram.com/accounts/login/"
+    }
+]
