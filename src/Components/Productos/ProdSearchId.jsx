@@ -5,10 +5,10 @@ import { FaFacebookSquare, FaWhatsappSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
+import Alerta from "../Alerta";
 import Spinner from "../Spinner";
-import Alerta from "../../Components/Alerta";
 
-const ProductoId = () => {
+const ProdSearchId = () => {
   const [prodId, setProdId] = useState([]);
   const [amount, setAmount] = useState(1);
   const [deadline, setDeadline] = useState(new Date());
@@ -108,7 +108,6 @@ const ProductoId = () => {
   if (loading) return <Spinner />;
 
   const { msg } = alerta;
-
   return (
     <div className="container mx-5 py-5 flex">
       {msg && <Alerta alerta={alerta} />}
@@ -199,4 +198,4 @@ const ProductoId = () => {
   );
 };
 
-export default ProductoId;
+export default ProdSearchId;

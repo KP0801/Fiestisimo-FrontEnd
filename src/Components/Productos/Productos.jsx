@@ -70,7 +70,7 @@ const Productos = () => {
           Productos de tú interés
         </p>
       </div>
-      <div className="w-full grid grid-cols-4 gap-5 cursor-pointer">
+      <div className="w-full grid grid-cols-4 gap-5">
         {productos.map((prod) => (
           <div key={prod.id_product} className="col-span-1 mt-5">
             <CardPoductos key={prod.id_product} prod={prod} />

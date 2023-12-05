@@ -8,6 +8,8 @@ const AuthProviderUsers = ({ children }) => {
   const [authUsers, setAuthUsers] = useState({});
   const [loading, setLoading] = useState(true);
   const [productosUser, setProductosUser] = useState([]);
+  const [favoritos, setFavoritos] = useState([]);
+  const [check2, setCheck2] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const AuthProviderUsers = ({ children }) => {
           `${import.meta.env.VITE_BACKEND_URL}/fiestisimo/login/`,
           config
         );
-        console.log("DATOS USUARIO", data);
+        console.log("DATOS USUARIO PROVIDER", data);
         setAuthUsers(data);
         navigate("/InicioUsers");
       } catch (error) {
@@ -60,6 +62,31 @@ const AuthProviderUsers = ({ children }) => {
     getProductos();
   }, []);
 
+  useEffect(() => {
+    const getFavorites = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        const { data } = await axios(
+          `${import.meta.env.VITE_BACKEND_URL}/fiestisimo/favoriteProducts/`,
+          config
+        );
+        console.log("FAVORITOS DESDE PROVIDER", data);
+        setFavoritos(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFavorites();
+  }, [check2]);
+
   return (
     <AuthContextUsers.Provider
       value={{
@@ -68,6 +95,9 @@ const AuthProviderUsers = ({ children }) => {
         loading,
         cerrarSesionUsers,
         productosUser,
+        favoritos,
+        setCheck2,
+        check2,
       }}
     >
       {children}

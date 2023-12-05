@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import CardPoductos from "../Productos/CardPoductos";
 import useAuthUsers from "../../hooks/useAuthUsers";
+import CardSearch from "./CardSearch";
 
 const ResultsSearch = () => {
   const location = useLocation();
@@ -20,7 +20,7 @@ const ResultsSearch = () => {
       <div className="grid grid-cols-4 mt-5 gap-5">
         {productsFilteres.map((prod) => (
           <div className="col-span-1" key={prod.id_product}>
-            <CardPoductos prod={prod} key={prod.id_product} />
+            <CardSearch prod={prod} key={prod.id_product} />
           </div>
         ))}
       </div>

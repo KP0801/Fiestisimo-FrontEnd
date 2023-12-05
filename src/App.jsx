@@ -17,6 +17,13 @@ import ProductoId from "./Components/Productos/ProductoId";
 import ProductosView from "./pages/ProductosView";
 import DesactiveUsers from "./Components/RolUsuarios/DesactiveUsers";
 import ResultsSearch from "./Components/RolUsuarios/ResultsSearch";
+import ReservacionesUser from "./Components/RolUsuarios/ReservacionesUser";
+import ReservacionesCancel from "./Components/RolUsuarios/ReservacionesCancel";
+import Reservaciones from "./Components/Administrador/Reservaciones";
+import ReservacionesFin from "./Components/RolUsuarios/ReservacionesFin";
+import ProdFav from "./Components/RolUsuarios/ProdFav";
+import ProdCardSearch from "./Components/Productos/ProdCardSearch";
+import ProdSearchId from "./Components/Productos/ProdSearchId";
 const App = () => {
   return (
     <BrowserRouter>
@@ -34,12 +41,28 @@ const App = () => {
               <Route path="AddProducts" element={<NuevoProducto />} />
               <Route path="AddUsuario" element={<AddUsuario />} />
               <Route path="DesactiveUsuario" element={<DesactiveUsers />} />
+              <Route path="resAdmin" element={<Reservaciones />} />
             </Route>
             <Route path="/InicioUsers" element={<RutaProtegidaUsuarios />}>
               <Route index element={<PaginaInicioUsuarios />} />
               <Route path="productos/:categoria" element={<ProdCategory />} />
               <Route path="productos/:categoria/:id" element={<ProductoId />} />
               <Route path="search" element={<ResultsSearch />} />
+              <Route
+                path="search/productos/:categoria"
+                element={<ProdCardSearch />}
+              />
+              <Route
+                path="search/productos/:categoria/:id"
+                element={<ProdSearchId />}
+              />
+              <Route path="reservaciones" element={<ReservacionesUser />} />
+              <Route
+                path="reservacionesCancel"
+                element={<ReservacionesCancel />}
+              />
+              <Route path="reservacionesFin" element={<ReservacionesFin />} />
+              <Route path="Favoritos" element={<ProdFav />} />
             </Route>
           </Routes>
         </AuthProviderUsers>

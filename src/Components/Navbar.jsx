@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle, BiSolidUserPlus } from "react-icons/bi";
+import Logo from "../design/Logo1.png";
 const Navbar = () => {
   return (
     <div className="grid items-center justify-between lg:grid-cols-3 gap-2 lg:gap-20 px-20 py-5 mt-0 mb-4 fixed z-50 bg-white w-full">
       <Link to="/">
         <img
-          src="/assets/LogoReposteria1.1.png"
+          src={Logo}
           alt="Logooo"
-          width={200}
+          width={150}
           height={25}
           className="mx-auto lg:mx-0"
         />

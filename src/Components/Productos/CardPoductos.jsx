@@ -9,12 +9,18 @@ import Modal from "../Modal";
 import FormAdmin from "../Administrador/FormAdmin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdFavorite } from "react-icons/md";
+import Alerta from "../Alerta";
+import useAuthUsers from "../../hooks/useAuthUsers";
 
 const CardPoductos = ({ prod, setProductos, productos, setCheck, check }) => {
   const { authAdm } = useAuth();
+  const { setCheck2, check2, authUsers } = useAuthUsers();
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editProd, setEditProd] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [alerta, setAlerta] = useState(false);
 
   const handleDelete = async (id) => {
     try {
@@ -56,10 +62,70 @@ const CardPoductos = ({ prod, setProductos, productos, setCheck, check }) => {
     setShowModal(false);
   };
 
+  const handleFav = async (id) => {
+    await addFavorites(id), setIsFavorite(!isFavorite);
+    setCheck2(!check2);
+  };
+
+  const handleDel = async (id) => {
+    await deleteFavorites(id), setIsFavorite(!isFavorite), setCheck2(!check2);
+  };
+
+  const addFavorites = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/fiestisimo/favoriteProducts/${
+          authUsers.id
+        }/${id}`,
+        config
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      setAlerta({
+        msg: error.response.data.error,
+        error: true,
+      });
+    }
+  };
+
+  const deleteFavorites = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/fiestisimo/favoriteProducts/${
+          authUsers.id
+        }/${id}`,
+        config
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      setAlerta({
+        msg: error.response.data.error,
+        error: true,
+      });
+    }
+  };
+
+  const { msg } = alerta;
+
   return (
-    <Link to={authAdm.role === "admin" ? `` : `productos/${prod.category}`}>
+    <>
       <div className="bg-white shadow-xl hover:shadow-2xl w-full h-auto rounded-tr-xl rounded-tl-xl">
         <ToastContainer position="top-right" />
+        {msg && <Alerta alerta={alerta} />}
         <Modal Visible={showModal} Close={() => closeModal()}>
           <div className="p-2 w-full h-screen">
             {editProd && (
@@ -74,11 +140,13 @@ const CardPoductos = ({ prod, setProductos, productos, setCheck, check }) => {
             )}
           </div>
         </Modal>
-        <img
-          src={prod.image}
-          alt={prod.name}
-          className="w-full h-72 rounded-tr-xl rounded-tl-xl"
-        />
+        <Link to={authAdm.role === "admin" ? `` : `productos/${prod.category}`}>
+          <img
+            src={prod.image}
+            alt={prod.name}
+            className="w-full h-72 rounded-tr-xl rounded-tl-xl"
+          />
+        </Link>
         <div className="mt-5 px-10 text-center">
           <p className="text-black font-black text-xl mt-3 uppercase">
             {prod.name}
@@ -114,14 +182,26 @@ const CardPoductos = ({ prod, setProductos, productos, setCheck, check }) => {
               <div className="pb-5">
                 <p className="text-black font-semibold text-xl mt-3 flex justify-between items-center">
                   L. {prod.price}
-                  <MdFavoriteBorder size={25} color="red" />
+                  {!isFavorite ? (
+                    <MdFavoriteBorder
+                      size={25}
+                      className="text-red-400 hover:text-red-600 cursor-pointer"
+                      onClick={() => handleFav(prod.id_product)}
+                    />
+                  ) : (
+                    <MdFavorite
+                      size={25}
+                      className="text-red-600 cursor-pointer"
+                      onClick={() => handleDel(prod.id_product)}
+                    />
+                  )}
                 </p>
               </div>
             </>
           )}
         </div>
       </div>
-    </Link>
+    </>
   );
 };
 

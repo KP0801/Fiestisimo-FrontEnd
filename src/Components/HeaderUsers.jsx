@@ -4,9 +4,10 @@ import Logo from "../design/Logo1.png";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { MdFavorite } from "react-icons/md";
 
 const HeaderUsers = () => {
-  const { cerrarSesionUsers } = useAuthUsers();
+  const { cerrarSesionUsers, favoritos } = useAuthUsers();
   const [valueSearch, setValueSearch] = useState("");
 
   const handleCerrarSesion = () => {
@@ -54,8 +55,15 @@ const HeaderUsers = () => {
         </form>
         <div className="grid grid-cols-2 justify-around items-center">
           <div className="col-span-1 flex justify-end">
-            <Link to="/pedidos" className="font-bold uppercase">
+            <Link
+              to="/InicioUsers/Favoritos"
+              className="text-gray-600 font-bold uppercase hover:text-gray-800 items-center gap-3 flex relative"
+            >
               Favoritos
+              <MdFavorite size={25} className="text-red-500" />
+              <p className="text-xl font-bold text-gray-700 absolute -top-3 -right-3">
+                {favoritos.length}
+              </p>
             </Link>
           </div>
           <div className="col-span-1 flex justify-end">

@@ -5,6 +5,7 @@ import { AiOutlineFileAdd, AiOutlineHome } from "react-icons/ai";
 import { MdOutlineAssignmentInd } from "react-icons/md";
 import { IoFastFood } from "react-icons/io5";
 import { FaUserXmark } from "react-icons/fa6";
+import { MdCardTravel } from "react-icons/md";
 
 const SideBar = () => {
   const { authAdm } = useAuth();
@@ -57,6 +58,15 @@ const SideBar = () => {
       >
         Desactivados
         <FaUserXmark size={25} />
+      </Link>
+      <Link
+        to="resAdmin"
+        className={`w-4/5 text-blue-800 border border-sky-400 uppercase font-bold flex items-center justify-around mt-5 rounded-lg py-2 ${
+          location.pathname === "/InicioAdm/resAdmin" ? "bg-sky-100" : ""
+        }`}
+      >
+        Reservaciones
+        <MdCardTravel size={25} />
       </Link>
     </aside>
   );

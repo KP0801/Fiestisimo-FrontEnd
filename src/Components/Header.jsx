@@ -17,10 +17,6 @@ const Header = () => {
         </Link>
         {/* <input type='search' className="rounded-lg lg:w-96 block p-2 border" placeholder="Buscar Proyectos..."/> */}
         <div className="flex items-center gap-4">
-          <Link to="/pedidos" className="font-bold uppercase">
-            Pedidos
-          </Link>
-
           <button
             onClick={handleCerrarSesion}
             type="button"

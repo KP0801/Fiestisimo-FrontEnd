@@ -3,18 +3,18 @@ export const dataSocialNetwork=[
         id:1,
         name:"Instagram",
         icon:"instagram",
-        link:"https://www.instagram.com/accounts/login/"
+        link:"https://instagram.com/fiestisimohn?igshid=MTNiYzNiMzkwZA=="
     },
     {
         id:2,
-        name:"Linkedin",
-        icon:"linkedin",
-        link:"https://www.instagram.com/accounts/login/"
+        name:"TikTok",
+        icon:"tiktok",
+        link:"https://www.tiktok.com/@fiestisimo?_r=1&_d=e7fj0g4d69lgab&sec_uid=MS4wLjABAAAAyoSe11e5rPQrgM-oe-YiqhwDptI_zL3Isqbw4UnOLRw2beZKxrwt1NF8_kmt69AK&share_author_id=6793794692179641349&sharer_language=es&source=h5_m&u_code=dmf750dgc8m97m&timestamp=1701717596&user_id=7049185627100087301&sec_user_id=MS4wLjABAAAAbMYBGglw5MbFljaJw1LU60SlvJ8CuGT1kp_Jiw_qLME6wNG0TVG24jditUooan8w&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7307969998344636165&share_link_id=de09d281-f3d5-4994-b7c1-5476605ac384&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b6880%2Cb5836&social_share_type=5"
     },
     {
         id:3,
-        name:"TikTok",
-        icon:"tiktok",
-        link:"https://www.instagram.com/accounts/login/"
+        name:"Facebook",
+        icon:"facebook1",
+        link:"https://www.facebook.com/fiestisimo2017?mibextid=2JQ9oc"
     }
 ]
